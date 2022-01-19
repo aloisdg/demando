@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demando</title>
+</head>
+
+<body>
+    <label for="question">question:</label><input id="question" name="question" type="text"
+        value="What do you think about this offer:">
+
+    <label for="color">color:</label><input id="color" name="color" type="text" value="#362652">
+    <br>
+
+    <label for="prefilled1">prefilled link 1:</label><input id="prefilled1" name="prefilled1" type="text"
+        value="https://docs.google.com/forms/d/e/1FAIpQLSc-mnf_Poto8t4MR6nj60z7WK3SVWCifdRxsb0deS3BjBdUeA/viewform?usp=pp_url&entry.1355518614=Like">
+    <br>
+    <label for="prefilled2">prefilled link 2:</label><input id="prefilled2" name="prefilled2" type="text"
+        value="https://docs.google.com/forms/d/e/1FAIpQLSc-mnf_Poto8t4MR6nj60z7WK3SVWCifdRxsb0deS3BjBdUeA/viewform?usp=pp_url&entry.1355518614=Dislike">
+
+    <hr>
+
+    <div style="min-width:300px;width:auto;display:inline-block">
+        <div
+            style="display:block;width:100%;box-sizing:border-box;padding:8px;border-radius:2px;border:1px solid #99b0e1;vertical-align:top;background-color:white">
+            <div style="min-width:100%;line-height:22px;font-weight:600;font-size:16px;padding-bottom:6px;font-family:'Avenir Next','Segoe UI','Calibri',Arial,sans-serif"
+                class="qu1">What do you think about this offer:</div>
+            <div>
+                <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="color:#ffffff!important;border:0px solid #000000;border-radius:3px;box-sizing:border-box;font-size:13px;font-weight:700;text-align:center;text-decoration:none;vertical-align:middle">
+                                <a href=""
+                                    style="text-decoration:none;color:#ffffff!important;display:block;padding:7px 20px"
+                                    target="_blank"><img data-emoji="👍" class="an1" alt="👍" aria-label="👍"
+                                        src="https://fonts.gstatic.com/s/e/notoemoji/14.0/1f44d/32.png"
+                                        loading="lazy"></a></td>
+                            <td style="width:8px">&nbsp;</td>
+                            <td
+                                style="color:#ffffff!important;border:0px solid #000000;border-radius:3px;box-sizing:border-box;font-size:13px;font-weight:700;text-align:center;text-decoration:none;vertical-align:middle">
+                                <a href=""
+                                    style="text-decoration:none;color:#ffffff!important;display:block;padding:7px 20px"
+                                    target="_blank"><img data-emoji="👎" class="an1" alt="👎" aria-label="👎"
+                                        src="https://fonts.gstatic.com/s/e/notoemoji/14.0/1f44e/32.png"
+                                        loading="lazy"></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="padding-top:5px">
+                <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="text-align:left;font-size:12px;line-height:16px;font-weight:normal;font-family:'Avenir Next','Segoe UI','Calibri',Arial,sans-serif">
+                                Like</td>
+                            <td
+                                style="text-align:right;font-size:12px;line-height:16px;font-weight:normal;font-family:'Avenir Next','Segoe UI','Calibri',Arial,sans-serif">
+                                Dislike</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="height:20px;line-height:20px">&nbsp;</div>
+    </div>
+
+    <script>
+        const update = (text, color, prefilled1, prefilled2) => {
+            document.querySelector(".qu1").textContent = text;
+            document.querySelectorAll(".an1").forEach(x => x.parentElement.parentElement.style.backgroundColor =
+                color);
+            const [pr1, pr2] = [...document.querySelectorAll("a")];
+            pr1.href = prefilled1;
+            pr2.href = prefilled2;
+        }
+
+        document.querySelector("#color").oninput = (e) =>
+            update(document.querySelector("#question").value, e.target.value, document.querySelector("#prefilled1")
+                .value,
+                document.querySelector("#prefilled2").value);
+
+        document.querySelector("#question").oninput = (e) =>
+            update(e.target.value, document.querySelector("#color").value, document.querySelector("#prefilled1").value,
+                document.querySelector("#prefilled2").value);
+
+        document.querySelector("#prefilled1").oninput = (e) =>
+            update(document.querySelector("#question").value, document.querySelector("#color").value, e.target.value,
+                document.querySelector("#prefilled2").value);
+
+        document.querySelector("#prefilled1").oninput = (e) =>
+            update(
+                document.querySelector("#question").value,
+                document.querySelector("#color").value,
+                document.querySelector("#prefilled1").value,
+                e.target.value);
+
+
+        update(
+            document.querySelector("#question").value,
+            document.querySelector("#color").value,
+            document.querySelector("#prefilled1").value,
+            document.querySelector("#prefilled2").value);
+
+        //like
+        //        https://docs.google.com/forms/d/e/1FAIpQLSc-mnf_Poto8t4MR6nj60z7WK3SVWCifdRxsb0deS3BjBdUeA/viewform?usp=pp_url&entry.1355518614=Like
+
+        //dislike
+        //        https://docs.google.com/forms/d/e/1FAIpQLSc-mnf_Poto8t4MR6nj60z7WK3SVWCifdRxsb0deS3BjBdUeA/viewform?usp=pp_url&entry.1355518614=Dislike
+    </script>
+</body>
+
+</html>
